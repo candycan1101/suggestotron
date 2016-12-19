@@ -62,7 +62,11 @@ class TopicsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def upvote
+      @topic = topic.find(params[:id])
+      @topic.votes.create
+      redirect_to(topics_path)
+    end 
     def set_topic
       @topic = Topic.find(params[:id])
     end
